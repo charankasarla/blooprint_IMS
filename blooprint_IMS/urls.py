@@ -9,5 +9,6 @@ urlpatterns = [
     path('items/<int:item_id>/', ItemDelete.as_view(), name='item-delete'),
     path('register/', UserRegistrationView.as_view(), name='user-register'),  
     path('login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('items-list/', ItemList.as_view(), name='item_list'),
 
 ]
