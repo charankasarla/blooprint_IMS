@@ -71,25 +71,22 @@ class ItemCreate(APIView):
 
 class ItemUpdate(APIView):
     def put(self, request, item_id):
-         """
-        Update an existing item in the inventory.
-        """
-        try:
+         try:
             item = Item.objects.get(id=item_id)
-        except Item.DoesNotExist:
+         except Item.DoesNotExist:
             return Response({"error": "Item not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        name = request.data.get('name')
-        description = request.data.get('description')
+         name = request.data.get('name')
+         description = request.data.get('description')
 
-        if not name or not description:
+         if not name or not description:
             return Response({"error": "Both 'name' and 'description' are required."}, status=status.HTTP_400_BAD_REQUEST)
 
-        item.name = name
-        item.description = description
-        item.save() 
+         item.name = name
+         item.description = description
+         item.save() 
 
-        return Response({
+         return Response({
             "id": item.id,
             "name": item.name,
             "description": item.description,
